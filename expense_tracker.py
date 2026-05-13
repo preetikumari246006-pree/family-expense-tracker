@@ -1,18 +1,23 @@
+import datetime
 expenses = []
 def add_expenses(amount, category, note):
   expense = {
     "amount": amount,
     "category": category,
-    "note": note
+    "note": note,
+    "date": datetime.date.today()
   }
-
   
   expenses.append(expense)
   print("Expense added successfully!")
 
 def view_expense():
-  for i in expenses:
-    print(i)
+  for expense in expenses:
+    print("Amount   :", expense["amount"])
+    print("Category :", expense["category"])
+    print("Note     :", expense["note"])
+    print("Date :", expense["date"])
+    print("--------------------")
 
 while True:
   choice = input("Enter the number between 1 to 3.")
