@@ -4,6 +4,15 @@ expenses = []
 def save_expenses():
   with open("expenses.json", "w") as file:
     json.dump(expenses, file)
+def load_expenses():
+    global expenses
+    try:
+        with open("expenses.json", "r") as file:
+            expenses = json.load(file)
+
+    except FileNotFoundError:
+        expenses = []
+load_expenses()
 def add_expenses(amount, category, note):
   expense = {
     "amount": amount,
@@ -38,4 +47,5 @@ while True:
   
   elif choice == "3":
     break
+
 
