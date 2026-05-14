@@ -32,20 +32,54 @@ def view_expense():
     print("Note     :", expense["note"])
     print("Date :", expense["date"])
     print("--------------------")
+def total_expenses():
+    total = 0
 
+    for expense in expenses:
+        total += expense["amount"]
+
+    print("Total Expenses:", total)
+
+def filter_by_category():
+    category = input("Enter category to filter: ")
+
+    found = False
+
+    for expense in expenses:
+        if expense["category"].lower() == category.lower():
+            print(expense)
+            found = True
+
+    if not found:
+        print("No expenses found in this category.")
 while True:
-  choice = input("Enter the number between 1 to 3.")
-  
-  if choice == "1":
-    amount = int(input("Enter your amount: "))
-    category = input("Enter your category: ")
-    note = input("Enter the short note: ")
-    add_expenses(amount, category, note)
- 
-  elif choice == "2":
-    view_expense()
-  
-  elif choice == "3":
-    break
+    print("\n--- Expense Tracker ---")
+    print("1. Add Expense")
+    print("2. View Expenses")
+    print("3. Total Summary")
+    print("4. Filter by Category")
+    print("5. Exit")
 
+    choice = input("Enter your choice: ")
+    
+    if choice == "1":
+        amount = int(input("Enter your amount: "))
+        category = input("Enter your category: ")
+        note = input("Enter the short note: ")
+        add_expenses(amount, category, note)
 
+    elif choice == "2":
+        view_expense()
+
+    elif choice == "3":
+        total_expenses()
+
+    elif choice == "4":
+        filter_by_category()
+
+    elif choice == "5":
+        print("Exiting program...")
+        break
+
+    else:
+        print("Invalid choice. Try again.")
