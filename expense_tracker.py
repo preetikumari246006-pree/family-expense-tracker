@@ -1,5 +1,9 @@
 import datetime
+import json
 expenses = []
+def save_expenses():
+  with open("expenses.json", "w") as file:
+    json.dump(expenses, file)
 def add_expenses(amount, category, note):
   expense = {
     "amount": amount,
@@ -9,6 +13,7 @@ def add_expenses(amount, category, note):
   }
   
   expenses.append(expense)
+  save_expenses()
   print("Expense added successfully!")
 
 def view_expense():
@@ -33,3 +38,4 @@ while True:
   
   elif choice == "3":
     break
+
